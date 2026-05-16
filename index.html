@@ -1,16 +1,140 @@
 <!DOCTYPE html>
-<html>
-<head lang="uk">
-    <meta charset="UTF-8">
-    <title>My Page</title>
-
-
-    <link rel="stylesheet" type="text/css" href="main.css" />
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy List</title>
+  <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-	<span class="product-item">
-		Apple
-		<span class="amount">4</span>
-	</span>
+  <main class="page">
+    <section class="shopping-list" aria-labelledby="shopping-title">
+      <h1 id="shopping-title" class="visually-hidden">Кошик покупок</h1>
+
+      <form class="add-form" aria-label="Додати товар">
+        <label for="product-name" class="visually-hidden">Назва товару</label>
+        <input
+          id="product-name"
+          type="text"
+          placeholder="Назва товару"
+          aria-label="Назва товару"
+        >
+        <button type="submit" class="add-button" data-tooltip="Додати товар">
+          Додати
+        </button>
+      </form>
+
+      <ul class="products" aria-label="Список товарів">
+        <li class="product-row bought">
+          <span class="product-name">Помідори</span>
+
+          <div class="counter" aria-label="Кількість товару">
+            <button type="button" class="round-button minus disabled" data-tooltip="Зменшити кількість" disabled>
+              −
+            </button>
+            <span class="amount">2</span>
+            <button type="button" class="round-button plus" data-tooltip="Збільшити кількість">
+              +
+            </button>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="status-button" data-tooltip="Повернути до списку">
+              Не куплено
+            </button>
+          </div>
+        </li>
+
+        <li class="product-row">
+          <span class="product-name">Печиво</span>
+
+          <div class="counter" aria-label="Кількість товару">
+            <button type="button" class="round-button minus" data-tooltip="Зменшити кількість">
+              −
+            </button>
+            <span class="amount">2</span>
+            <button type="button" class="round-button plus" data-tooltip="Збільшити кількість">
+              +
+            </button>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="status-button" data-tooltip="Позначити як куплене">
+              Куплено
+            </button>
+            <button type="button" class="delete-button" data-tooltip="Видалити товар">
+              ×
+            </button>
+          </div>
+        </li>
+
+        <li class="product-row">
+          <input
+            class="edit-input"
+            type="text"
+            value="Сир"
+            aria-label="Редагувати назву товару"
+          >
+
+          <div class="counter" aria-label="Кількість товару">
+            <button type="button" class="round-button minus disabled" data-tooltip="Зменшити кількість" disabled>
+              −
+            </button>
+            <span class="amount">1</span>
+            <button type="button" class="round-button plus" data-tooltip="Збільшити кількість">
+              +
+            </button>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="status-button" data-tooltip="Позначити як куплене">
+              Куплено
+            </button>
+            <button type="button" class="delete-button" data-tooltip="Видалити товар">
+              ×
+            </button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <aside class="summary" aria-label="Підсумок покупок">
+      <section class="summary-section">
+        <h2>Залишилося</h2>
+
+        <div class="tags">
+          <span class="product-item">
+            Печиво
+            <span class="tag-amount">2</span>
+          </span>
+
+          <span class="product-item">
+            Сир
+            <span class="tag-amount">1</span>
+          </span>
+        </div>
+      </section>
+
+      <section class="summary-section">
+        <h2>Куплено</h2>
+
+        <div class="tags">
+          <span class="product-item bought-tag">
+            Помідори
+            <span class="tag-amount">2</span>
+          </span>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <aside class="badge" aria-label="Інформація про автора роботи">
+    <div class="badge-title">Buy List</div>
+    <div class="badge-author">
+      Created by:<br>
+      Sofia Prutska
+    </div>
+  </aside>
 </body>
 </html>
