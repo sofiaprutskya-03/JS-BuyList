@@ -215,8 +215,6 @@ body {
   border-radius: 50%;
 }
 
-/* Tooltip */
-
 button {
   position: relative;
 }
@@ -258,8 +256,6 @@ button[data-tooltip]:focus-visible::after {
   right: 0;
 }
 
-/* Badge */
-
 .badge {
   position: fixed;
   left: 35px;
@@ -295,8 +291,6 @@ button[data-tooltip]:focus-visible::after {
   display: none;
 }
 
-/* Accessibility */
-
 button:focus-visible,
 input:focus-visible {
   outline: 3px solid #6dbdf2;
@@ -309,8 +303,6 @@ input:focus-visible {
   height: 1px;
   overflow: hidden;
 }
-
-/* Responsive */
 
 @media (max-width: 650px) {
   body {
