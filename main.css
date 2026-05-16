@@ -4,15 +4,15 @@
 
 body {
   margin: 0;
+  padding: 35px;
   font-family: Arial, sans-serif;
   background: white;
   color: #222;
 }
 
 .page {
-  width: calc(100% - 80px);
   max-width: 1250px;
-  margin: 35px auto;
+  margin: 0 auto;
   padding: 22px;
   background: #d9d9d9;
   display: grid;
@@ -20,12 +20,11 @@ body {
   gap: 36px;
 }
 
-.shopping-list,
-.summary {
+.panel {
   background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  overflow: visible;
 }
 
 .add-form {
@@ -38,30 +37,34 @@ body {
   flex: 1;
   padding: 15px 20px;
   font-size: 20px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid #ddd;
   border-right: none;
   border-radius: 6px 0 0 6px;
+}
+
+.add-form input::placeholder {
+  color: #999;
 }
 
 .add-button {
   min-width: 140px;
   padding: 0 25px;
-  font-size: 20px;
-  font-weight: bold;
   color: white;
   background: #2185d0;
   border: none;
   border-radius: 0 6px 6px 0;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.products {
-  list-style: none;
+.shopping-list {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-.product-row {
+.shopping-row {
   min-height: 75px;
   padding: 14px 18px;
   border-bottom: 1px solid #e4e4e4;
@@ -71,21 +74,24 @@ body {
   gap: 16px;
 }
 
+.shopping-row:last-child {
+  border-bottom: none;
+}
+
 .product-name {
   font-size: 20px;
 }
 
-.product-row.bought .product-name,
-.bought-tag {
+.crossed {
   text-decoration: line-through;
 }
 
 .counter,
 .actions,
 .tags,
-.product-item,
+.tag,
 .amount,
-.tag-amount {
+.tag-count {
   display: flex;
   align-items: center;
 }
@@ -100,7 +106,7 @@ body {
   gap: 8px;
 }
 
-.round-button {
+.circle-button {
   width: 42px;
   height: 42px;
   border: none;
@@ -128,8 +134,8 @@ body {
   justify-content: center;
   width: 38px;
   height: 38px;
+  background: #eee;
   border-radius: 5px;
-  background: #eeeeee;
   font-size: 20px;
   font-weight: bold;
 }
@@ -137,23 +143,23 @@ body {
 .status-button {
   min-width: 125px;
   padding: 13px 16px;
+  color: #555;
+  background: linear-gradient(#fff, #e9e9e9);
   border: 1px solid #d8d8d8;
   border-radius: 6px;
-  background: linear-gradient(#ffffff, #e9e9e9);
   box-shadow: 0 3px 0 #b7b7b7;
   font-size: 16px;
   font-weight: bold;
-  color: #555;
   cursor: pointer;
 }
 
 .delete-button {
   width: 42px;
   height: 42px;
+  color: white;
+  background: #db2828;
   border: none;
   border-radius: 6px;
-  background: #db2828;
-  color: white;
   font-size: 25px;
   font-weight: bold;
   cursor: pointer;
@@ -173,11 +179,15 @@ body {
   border-bottom: 1px solid #e4e4e4;
 }
 
+.summary-section:last-child {
+  border-bottom: none;
+}
+
 .summary h2 {
   margin: 0;
   padding: 24px 20px;
-  font-size: 28px;
   border-bottom: 1px solid #e4e4e4;
+  font-size: 28px;
 }
 
 .tags {
@@ -186,24 +196,26 @@ body {
   padding: 24px 20px;
 }
 
-.product-item {
+.tag {
   gap: 6px;
   padding: 9px 12px;
+  background: #eee;
   border-radius: 6px;
-  background: #eeeeee;
+  color: #555;
   font-size: 15px;
   font-weight: bold;
-  color: #555;
 }
 
-.tag-amount {
+.tag-count {
   justify-content: center;
   width: 25px;
   height: 25px;
-  border-radius: 50%;
   background: #ff6f1a;
   color: white;
+  border-radius: 50%;
 }
+
+/* Tooltip */
 
 button {
   position: relative;
@@ -214,19 +226,19 @@ button[data-tooltip]::after {
   position: absolute;
   left: 50%;
   bottom: calc(100% + 12px);
-  transform: translateX(-50%) translateY(10px) scale(0.8);
   min-width: 120px;
   padding: 10px 14px;
-  border-radius: 12px;
   background: #c000d8;
   color: white;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
+  transform: translateX(-50%) translateY(10px) scale(0.8);
   transition: 0.25s;
-  z-index: 20;
+  z-index: 10;
 }
 
 button[data-tooltip]:hover::after,
@@ -246,18 +258,20 @@ button[data-tooltip]:focus-visible::after {
   right: 0;
 }
 
+/* Badge */
+
 .badge {
   position: fixed;
   left: 35px;
-  bottom: -78px;
+  bottom: -70px;
   width: 210px;
   height: 125px;
   padding: 20px 26px;
   background: #4b0082;
   color: white;
   border-radius: 12px 12px 0 0;
-  transition: 0.45s;
-  z-index: 50;
+  transition: 0.4s;
+  z-index: 20;
 }
 
 .badge:hover {
@@ -266,14 +280,22 @@ button[data-tooltip]:focus-visible::after {
 }
 
 .badge-title {
+  display: block;
+  margin-bottom: 18px;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 18px;
 }
 
 .badge-author {
+  display: block;
   font-size: 17px;
 }
+
+.badge-print {
+  display: none;
+}
+
+/* Accessibility */
 
 button:focus-visible,
 input:focus-visible {
@@ -288,14 +310,19 @@ input:focus-visible {
   overflow: hidden;
 }
 
+/* Responsive */
+
 @media (max-width: 650px) {
-  .page {
-    width: 100%;
-    margin: 0;
-    grid-template-columns: 1fr;
+  body {
+    padding: 20px;
   }
 
-  .product-row {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .shopping-row {
     grid-template-columns: 1fr;
   }
 
@@ -313,7 +340,7 @@ input:focus-visible {
   .add-button,
   .edit-input {
     width: 100%;
-    border: 1px solid #e4e4e4;
+    border: 1px solid #ddd;
     border-radius: 6px;
   }
 
@@ -322,7 +349,14 @@ input:focus-visible {
   }
 }
 
+/* Print */
+
 @media print {
+  body {
+    padding: 0;
+    background: white;
+  }
+
   .page {
     display: none;
   }
@@ -333,16 +367,19 @@ input:focus-visible {
     height: auto;
     margin: 40px auto;
     background: white;
-    color: black;
+    color: #4b0082;
     border: 3px solid #4b0082;
     border-radius: 8px;
+    transform: none;
   }
 
-  .badge-title {
+  .badge-title,
+  .badge-author {
     display: none;
   }
 
-  .badge-author {
+  .badge-print {
+    display: block;
     font-size: 22px;
   }
 }
